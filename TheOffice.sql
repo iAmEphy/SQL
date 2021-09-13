@@ -284,3 +284,8 @@ WHERE employee.emp_id IN (
                          )
 AND employee.branch_id = 2;
 
+
+
+SELECT * FROM branch;
+SELECT * FROM branch_supplier;
+
