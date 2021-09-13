@@ -125,7 +125,7 @@ FROM client;
 -- all employees ordered by salary
 SELECT *
 from employee
-ORDER BY salary DESC;
+ORDER BY salary dwaDESC;
 
 -- all employees ordered by sex then name
 SELECT *
@@ -141,12 +141,12 @@ LIMIT 5;
 SELECT first_name, employee.last_name
 FROM employee;
 
--- the forename and surnames names of all employees
+-- the forename and surnames names of all employees. AS changes it column to forename and surname
 SELECT first_name AS forename, employee.last_name AS surname
 FROM employee;
 
 -- out all the different genders
-SELECT DISCINCT sex
+SELECT DISTINCT sex
 FROM employee;
 
 -- all male employees
