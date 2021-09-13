@@ -245,10 +245,42 @@ UNION
 SELECT branch_supplier.supplier_name, branch_supplier.branch_id
 FROM branch_supplier;
 
--- Add the extra branch
+-- extra branch
 INSERT INTO branch VALUES(4, "Buffalo", NULL, NULL);
 
 SELECT employee.emp_id, employee.first_name, branch.branch_name
 FROM employee
-JOIN branch    -- LEFT JOIN, RIGHT JOIN
+LEFT JOIN branch    -- LEFT JOIN, RIGHT JOIN
 ON employee.emp_id = branch.mgr_id;
+
+-- Find names of all employees who have sold over 50,000
+SELECT employee.first_name, employee.last_name
+FROM employee
+WHERE employee.emp_id IN (
+	SELECT works_with.emp_id
+	FROM works_with
+	WHERE works_with.total_sales > 30000
+);
+
+-- Find all clients who are handles by the branch that Michael Scott manages
+-- Assume you know Michael's ID
+
+SELECT client.client_name
+FROM client
+WHERE client.branch_id = (
+	SELECT branch.branch_id
+	FROM branch
+	WHERE branch.mgr_id = 102
+    LIMIT 1
+);
+
+
+-- Find the names of employees who work with clients handled by the scranton branch
+SELECT employee.first_name, employee.last_name
+FROM employee
+WHERE employee.emp_id IN (
+	SELECT works_with.emp_id
+	FROM works_with
+                         )
+AND employee.branch_id = 2;
+
