@@ -57,6 +57,22 @@ FROM student
 ORDER BY Student_Name DESC;
 /* Alphabetical ^ ORDER BY          DESC = descending alphabetical OR   ASC ascending*/
 
+SELECT *
+FROM student
+ORDER BY Student_ID DESC
+LIMIT 2;
+/*By major and if same major, then by student id */
 
 
+SELECT *
+FROM student
+WHERE major = 'Undecided';
+/* only student major undecided all */
+/* <> NOT   < > >= <= = */
+
+
+SELECT *
+FROM student
+WHERE Student_NAME IN ('To', 'Kot');
+/*Choose student names To and Kot only */
 
