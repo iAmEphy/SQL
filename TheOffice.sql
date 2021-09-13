@@ -183,3 +183,72 @@ WHERE birth_day BETWEEN '1970-01-01' AND '1975-01-01';
 SELECT *
 FROM employee
 WHERE first_name IN ('Jim', 'Michael', 'Johnny', 'David');
+
+
+SELECT COUNT(super_id)
+FROM employee;
+
+SELECT COUNT(super_id)
+FROM employee;
+
+--  the average of all employee's salaries
+SELECT AVG(salary)
+FROM employee;
+
+--  the sum of all employee's salaries
+SELECT SUM(salary)
+FROM employee;
+
+--  out how many males and females there are
+SELECT COUNT(sex), sex
+FROM employee
+GROUP BY sex
+
+--  the total sales of each salesman
+SELECT SUM(total_sales), emp_id
+FROM works_with
+GROUP BY client_id;
+
+-- the total amount of money spent by each client
+SELECT SUM(total_sales), client_id
+FROM works_with
+GROUP BY client_id;
+
+SELECT * 
+FROM client
+WHERE client_name LIKE '%LLC';
+
+SELECT *
+FROM branch_supplier
+WHERE supplier_name LIKE '% Label%';
+
+-- any employee born on the 10th day of the month
+SELECT *
+FROM employee
+WHERE birth_day LIKE '_____10%';
+
+-- any clients who are schools
+SELECT *
+FROM client
+WHERE client_name LIKE '%Highschool%';
+
+SELECT employee.first_name AS Employee_Branch_Names
+FROM employee
+UNION
+SELECT branch.branch_name
+FROM branch;
+
+-- a list of all clients & branch suppliers' names
+SELECT client.client_name AS NonEmployee_Entities, client.branch_id AS Branch_ID
+FROM client
+UNION
+SELECT branch_supplier.supplier_name, branch_supplier.branch_id
+FROM branch_supplier;
+
+-- Add the extra branch
+INSERT INTO branch VALUES(4, "Buffalo", NULL, NULL);
+
+SELECT employee.emp_id, employee.first_name, branch.branch_name
+FROM employee
+JOIN branch    -- LEFT JOIN, RIGHT JOIN
+ON employee.emp_id = branch.mgr_id;
